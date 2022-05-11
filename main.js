@@ -65,16 +65,9 @@ async function getallcountriesfromapi(){
             
 
         })
-        /*const foundDuplicateName = x.find((nnn, index) =>{
-            return x.find((a, ind)=> a.city === nnn.city && index !== ind )
-             })
-             
-             console.log(foundDuplicateName)*/
-
-             let a = [
-                ...new Map(x.map((item) => [item["city"], item])).values(),
-             ];
-             console.log(a)
+        //To find out if any city name repeated
+        /*const unique = Array.from(x.reduce((map,obj) => map.set(obj.city,obj),new map()).values())
+        console.log(unique)*/
 }
 const freefakeapi1 = 'https://jsonplaceholder.typicode.com/posts'
 const freefakeapi2 = 'https://fakestoreapi.com/products'
@@ -89,12 +82,19 @@ async function freefakeapi(){
 
     //To get all the users with user id 1
     let car = ffadata.filter(ffadata => ffadata.userId === 1);
-
-    document.getElementById('userid1').innerHTML += `Refer to Console for the output`
+    //Insert all the objects as rows into a table using DOM
+    var table = document.getElementById('mytable')
+    car.forEach(function(x){
+            var row = `<tr>
+                        <td>${x.userId}</td>
+                        <td>${x.id}</td>
+                        <td>${x.title}</td>
+                        <td>${x.body}</td>
+                        </tr>`
+            table.innerHTML += row
+        })
     
-    console.log(car)
-
-
+    
    
 }
 async function freefakestore(){
